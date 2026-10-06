@@ -1,0 +1,20 @@
+Turnip-Native-RT-A840
+
+Derived build and patch resources:
+  The412Banner/Banners-Turnip
+  https://github.com/The412Banner/Banners-Turnip
+  Snapshot: 11a6d6c1005e1a7bc76ebf9279d38b94f829449b
+  Repository license: GNU GPL version 3.
+
+Native Mesa ray-tracing implementation:
+  Connor Abbott, Valve Corporation; original upstream MIT headers retained.
+  https://gitlab.freedesktop.org/cwabbott0/mesa
+  Pinned commit: bec9c385f41483fcf0dcc04da7564db1750ed4c7
+  Full patch-series provenance is in patches/raytracing/SOURCE.
+
+The build fetches Mesa source at the pinned commit and applies the patches in
+this repository. This repository is not an official Mesa, Qualcomm, Lenovo,
+Valve or Banners-Turnip release.
+
+The user's v891.7 Qualcomm archive was used as a test reference only.
+None of its proprietary libraries or binary code are included here.

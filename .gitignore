@@ -1,0 +1,4 @@
+turnip_workdir/
+artifacts/
+diagnostics/
+__pycache__/

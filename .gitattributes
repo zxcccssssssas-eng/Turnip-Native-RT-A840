@@ -1,0 +1,2 @@
+# Preserve upstream patch context and git-format-patch mail separators verbatim.
+patches/raytracing/*.patch -whitespace

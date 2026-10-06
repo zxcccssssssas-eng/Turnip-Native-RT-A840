@@ -1,0 +1,41 @@
+name: Build Turnip Native RT (Experimental)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  native-rt:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y meson ninja-build git curl unzip zip glslang-tools flex bison python3-mako python3-yaml python3-packaging
+      - name: Build pinned native Turnip RT implementation
+        run: bash build_turnip_rt.sh
+      - name: Check package
+        run: |
+          python3 - <<'PY'
+          import json, zipfile
+          from pathlib import Path
+          archive = Path('artifacts/native-rt/Turnip-Native-RT-A840-experimental.zip')
+          with zipfile.ZipFile(archive) as z:
+              assert z.testzip() is None
+              assert set(z.namelist()) == {'meta.json', 'libvulkan_freedreno.so'}
+              meta = json.loads(z.read('meta.json'))
+              assert meta['vendor'] == 'Mesa' and meta['minApi'] == 35
+              elf = z.read(meta['libraryName'])
+              assert elf[:5] == b'\x7fELF\x02' and int.from_bytes(elf[18:20], 'little') == 183
+          PY
+      - name: Upload experimental package and provenance
+        uses: actions/upload-artifact@v4
+        with:
+          name: Turnip-Native-RT-A840-experimental
+          path: |
+            artifacts/native-rt/Turnip-Native-RT-A840-experimental.zip
+            artifacts/native-rt/build-report.json

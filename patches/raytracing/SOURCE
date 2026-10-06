@@ -1,0 +1,29 @@
+Native Turnip ray-tracing pipeline implementation
+
+Author: Connor Abbott, Valve Corporation (MIT; original headers retained).
+Source: https://gitlab.freedesktop.org/cwabbott0/mesa/-/tree/tu-rt-pipelines-v3
+Pinned tip: bec9c385f41483fcf0dcc04da7564db1750ed4c7
+Base: 790bebe7ca0d9625dc378a805540da07523b17ef
+Tip Git tree: 35c529994b4c8234b31b38ce10fbc0be69e6e084
+
+turnip-rt-v3.patch is the original 33-commit series, exported with:
+    git format-patch --stdout <base>..<tip>
+SHA256: 2b597d666d31d63d0659dbd6508ec98ee24f7b03b32e6e3c47fe56edab12f445
+It is included for review and recovery, not applied a second time by the build.
+The dedicated builder fetches the pinned tip, not the moving branch.
+
+kgsl-aqe-enable.patch fixes an omission in that series: tu_kgsl_get_aqe()
+was added, but its result was not assigned to device->has_aqe in the KGSL
+physical-device loader. Without this assignment VK_KHR_ray_tracing_pipeline
+stays hidden. The patch queries KGSL_PROP_IS_AQE_ENABLED (0x30); it does not
+force or bypass the kernel's answer. RT also requires the existing SW-fuse
+check and the device's nonzero max_rt_threads property.
+
+The native RT variant uses the repository's common KGSL synchronization
+fixes and A840v2 chip-ID correction. Ordinary Mesa-main variants are unchanged.
+The experimental A8xx mesh/wave32 patch series is not included in this variant.
+
+v891.7.zip was used only as a binary capability/compiler reference on the
+tablet. It contains no Mesa source or patchable Turnip implementation.
+Archive SHA256: 2ddf93b839db165db82a76a440564f73694c6f6e3c84097e56abb95075d469e7
+No proprietary archive contents are bundled in the native driver or Git changes.

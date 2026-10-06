@@ -1,0 +1,11 @@
+diff --git a/src/freedreno/vulkan/tu_knl_kgsl.cc b/src/freedreno/vulkan/tu_knl_kgsl.cc
+--- a/src/freedreno/vulkan/tu_knl_kgsl.cc
++++ b/src/freedreno/vulkan/tu_knl_kgsl.cc
+@@ -1859,6 +1859,7 @@
+    device->gmem_base = gmem_iova;
+ 
+    device->has_raytracing = tu_kgsl_get_raytracing(fd);
++   device->has_aqe = tu_kgsl_get_aqe(fd);
+ 
+    device->submitqueue_priority_count = 1;
+    

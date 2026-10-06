@@ -1,0 +1,61 @@
+{
+  "testDate": "2026-10-07",
+  "timezone": "Asia/Shanghai",
+  "device": [
+    "TB323FU",
+    "SM8850P",
+    "16",
+    "36",
+    "Adreno840v21073826.03 4210847.40"
+  ],
+  "kgslCapabilities": [
+    "raytracing property=0x2d value=1 ret=0",
+    "aqe property=0x30 value=1 ret=0"
+  ],
+  "mesaCommit": "bec9c385f41483fcf0dcc04da7564db1750ed4c7",
+  "sourceDiffSha256": "51b8bd5fb5411b352f56fddf0625b60d4c2f3123aec123aff062e791bf8f791a",
+  "driverSha256": "1fb3218de920d2c695b9d92d0c7dd93ff8dfc5fe7dbf51954ccfbbc7f4c5f36b",
+  "packageSha256": "576cc5c2a9c29e963e6164211c6ee7c802fdc8ff3fd458dba40a70102bf9a528",
+  "nativeResults": {
+    "query": [
+      "device=Adreno (TM) 840 mode=query",
+      "built BLAS size=320",
+      "built TLAS size=448",
+      "PASS query rays=4096 rounds=10 hit=11 miss=22 expected=11,22"
+    ],
+    "pipeline": [
+      "device=Adreno (TM) 840 mode=pipeline",
+      "built BLAS size=320",
+      "built TLAS size=448",
+      "PASS pipeline rays=4096 rounds=10 hit=11 miss=22 expected=11,22"
+    ],
+    "recursive": [
+      "device=Adreno (TM) 840 mode=recursive",
+      "built BLAS size=320",
+      "built TLAS size=448",
+      "PASS recursive rays=4096 rounds=10 hit=33 miss=22 expected=33,22"
+    ],
+    "render": [
+      "device=Adreno (TM) 840 mode=render",
+      "built BLAS size=320",
+      "built TLAS size=448",
+      "PASS render pixels=12288 rounds=10 image=/data/local/tmp/banner-native-rt-14830-1526/native-rt-render.ppm"
+    ]
+  },
+  "referenceZipSha256": "2ddf93b839db165db82a76a440564f73694c6f6e3c84097e56abb95075d469e7",
+  "referenceResults": {
+    "query": [
+      "device=Adreno (TM) 840 mode=query",
+      "built BLAS size=1856",
+      "built TLAS size=2176"
+    ],
+    "pipeline": [
+      "device=Adreno (TM) 840 mode=pipeline",
+      "built BLAS size=1856",
+      "built TLAS size=2176",
+      "FAIL vkCreateRayTracingPipelinesKHR(device,VK_NULL_HANDLE,VK_NULL_HANDLE,1,&rpci,NULL,&pipeline): -13"
+    ]
+  },
+  "healthAfter": "1073831.26 4210883.49",
+  "limits": "One Adreno 840v2 device; experimental implementation. No game or full Vulkan conformance validation."
+}

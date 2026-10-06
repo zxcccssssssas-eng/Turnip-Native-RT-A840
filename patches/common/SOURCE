@@ -1,0 +1,17 @@
+KGSL fixes imported from The412Banner/Banners-Turnip (GPL-3.0 repository).
+https://github.com/The412Banner/Banners-Turnip/tree/A8xx/patches/common
+Source snapshot: 11a6d6c1005e1a7bc76ebf9279d38b94f829449b
+
+kgsl-syncobj-merge-ts-fd.patch (DroidDeck, 2026-09-26):
+  Convert the timestamp sync object, not the file-descriptor sync object, when
+  merging the two kinds. The original code could dereference a null queue or
+  merge an invalid file descriptor.
+
+kgsl-zero-timeout-poll.patch (The412Banner, 2026-09-29):
+  Read the retired timestamp for zero-timeout/already-expired polls instead of
+  passing timeout=0 to KGSL, where zero means wait forever. This avoids an
+  unintended CPU/GPU synchronization stall.
+
+These two patches are identical to those in the tablet-tested native build.
+apply_common.sh is a focused application script for this standalone project.
+The A8xx mesh/wave32 patch series is not included.
