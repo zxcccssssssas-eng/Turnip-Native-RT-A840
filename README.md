@@ -46,7 +46,7 @@ System driver replacement is not required.
 
 ## Build
 
-Install Git, Meson, Ninja, curl, unzip, patch, glslangValidator, flex, bison and
+Install Git, Meson 1.4 or newer, Ninja, curl, unzip, patch, glslangValidator, flex, bison and
 Python mako, pyyaml and packaging on Linux. NDK r29 is downloaded automatically
 or can be supplied through `ANDROID_NDK_HOME`.
 

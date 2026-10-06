@@ -15,7 +15,10 @@ jobs:
       - name: Install build dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y meson ninja-build git curl unzip zip glslang-tools flex bison python3-mako python3-yaml python3-packaging
+          sudo apt-get install -y ninja-build git curl unzip zip patch glslang-tools flex bison python3-venv
+          python3 -m venv "$RUNNER_TEMP/turnip-rt-build-env"
+          "$RUNNER_TEMP/turnip-rt-build-env/bin/pip" install 'meson==1.10.1' mako pyyaml packaging
+          echo "$RUNNER_TEMP/turnip-rt-build-env/bin" >> "$GITHUB_PATH"
       - name: Build pinned native Turnip RT implementation
         run: bash build_turnip_rt.sh
       - name: Check package

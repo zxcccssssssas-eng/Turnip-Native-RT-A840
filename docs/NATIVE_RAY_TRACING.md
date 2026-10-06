@@ -25,7 +25,7 @@ recipes unchanged. The A8xx mesh/wave32 series is not part of this RT variant.
 
 ## Build and reproduce tablet tests
 
-On Linux, install Git, Meson, Ninja, curl, unzip, zip, patch, glslangValidator,
+On Linux, install Git, Meson 1.4 or newer, Ninja, curl, unzip, zip, patch, glslangValidator,
 flex, bison, and Python mako, pyyaml and packaging. The script reuses NDK r29 in
 `turnip_workdir/android-ndk-r29`, or downloads it from Google. An explicit
 `ANDROID_NDK_HOME` can point to NDK r29. It pins the Mesa commit and refuses to
